@@ -1,190 +1,100 @@
-const entries = [
-  {
-    id: "yin-yang",
-    type: "theory",
-    title: "阴阳学说",
-    level: "入门",
-    summary: "理解中医辨证中寒热、表里、动静、升降等关系的基础框架。",
-    keywords: ["阴阳", "寒热", "动静", "基础"],
-    sections: {
-      核心概念: "阴阳用于描述事物相互对立、互根、消长和转化的关系。",
-      学习重点: "先抓住相对性：同一个现象在不同参照下可能呈现不同阴阳属性。",
-      后续可接入: "可加入《黄帝内经》原文、老师讲义、案例辨析。"
+cconst translations = {
+  zh: {
+    pageTitle: "岐黄研习台 - 中医知识学习平台",
+    brand: "岐黄研习台",
+    navLibrary: "中医库",
+    navTheory: "中医理论",
+    navFormula: "方剂",
+    navHerb: "中药",
+    toggleLabel: "English",
+    heroEyebrow: "中医知识学习平台",
+    heroTitle: "把理论、方剂、药材和临证笔记整理成一套能反复学习的知识库。",
+    heroText: "先搭好平台骨架，后续你把方子、理论、医案、讲义发来，我可以继续帮你导入、分类、检索和生成专题页面。",
+    enterLibrary: "进入中医库",
+    viewPath: "查看学习路径",
+    statTheory: "理论主题",
+    statFormula: "方剂条目",
+    statHerb: "中药条目",
+    libraryTitle: "中医库入口",
+    iconAll: "总",
+    iconTheory: "理",
+    iconFormula: "方",
+    iconHerb: "药",
+    entryAllTitle: "总览学习",
+    entryAllText: "理论、方剂、中药一起检索",
+    entryTheoryTitle: "中医理论",
+    entryTheoryText: "阴阳、五行、脏腑、经络",
+    entryFormulaTitle: "方剂库",
+    entryFormulaText: "组成、功用、主治、学习提示",
+    entryHerbTitle: "中药库",
+    entryHerbText: "性味、归经、功效、配伍",
+    searchLabel: "检索内容",
+    searchPlaceholder: "搜索：桂枝汤、阴阳、甘草...",
+    levelLabel: "学习阶段",
+    noteTitle: "内容提示",
+    noteText: "这里先放示例资料。正式上线前，我会按你提供的原文整理出处、分类、关键词和学习顺序。",
+    detailEyebrow: "当前条目",
+    detailTitle: "选择左侧内容开始学习",
+    detailText: "点击任何理论、方剂或药材条目，这里会显示详细学习卡片。",
+    pathTitle: "建议学习路径",
+    pathOneTitle: "先立框架",
+    pathOneText: "从阴阳、五行、藏象、经络这些基础概念开始，建立中医语言体系。",
+    pathTwoTitle: "再看方药",
+    pathTwoText: "把方剂拆成君臣佐使、功用主治、常见加减，和药材性味归经对应起来。",
+    pathThreeTitle: "进入专题",
+    pathThreeText: "后续可以按体质、病证、经典条文、医案等方式生成专题学习页。",
+    disclaimer: "仅作学习整理，不替代专业诊疗建议。",
+    resultUnit: "条",
+    empty: "没有找到匹配内容。后续导入资料后，这里会自动扩展。",
+    levels: {
+      all: "全部阶段",
+      beginner: "入门",
+      advanced: "进阶",
+      topic: "专题"
+    },
+    typeNames: {
+      all: "全部资料",
+      theory: "中医理论",
+      formula: "方剂库",
+      herb: "中药库"
     }
   },
-  {
-    id: "five-phases",
-    type: "theory",
-    title: "五行与脏腑关系",
-    level: "入门",
-    summary: "用木、火、土、金、水理解生克制化，以及肝心脾肺肾之间的关系。",
-    keywords: ["五行", "脏腑", "生克", "制化"],
-    sections: {
-      核心概念: "五行不是简单分类表，而是观察功能关系和动态变化的模型。",
-      学习重点: "重点看生克制化如何帮助分析病机，不要只背对应表。",
-      后续可接入: "可扩展五行配属表、脏腑病机图、临床例题。"
-    }
-  },
-  {
-    id: "guizhi-tang",
-    type: "formula",
-    title: "桂枝汤",
-    level: "进阶",
-    summary: "经典解肌发表、调和营卫方，适合用来学习方剂结构。",
-    keywords: ["桂枝汤", "伤寒论", "营卫", "解表"],
-    sections: {
-      组成示例: "桂枝、芍药、炙甘草、生姜、大枣。",
-      功用示例: "解肌发表，调和营卫。",
-      学习提示: "后续可把你的方解、剂量、加减、条文出处导入这里。"
-    }
-  },
-  {
-    id: "si-jun-zi-tang",
-    type: "formula",
-    title: "四君子汤",
-    level: "进阶",
-    summary: "补气基础方，适合做脾胃气虚类方剂的学习入口。",
-    keywords: ["四君子汤", "补气", "脾胃", "方剂"],
-    sections: {
-      组成示例: "人参、白术、茯苓、炙甘草。",
-      功用示例: "益气健脾。",
-      学习提示: "可以继续关联六君子汤、香砂六君子汤等衍生方。"
-    }
-  },
-  {
-    id: "gan-cao",
-    type: "herb",
-    title: "甘草",
-    level: "入门",
-    summary: "常见调和药，学习性味、归经、配伍时非常适合作为起点。",
-    keywords: ["甘草", "补气", "调和", "中药"],
-    sections: {
-      性味归经示例: "甘，平。归心、肺、脾、胃经。",
-      功效示例: "补脾益气，清热解毒，祛痰止咳，缓急止痛，调和诸药。",
-      学习提示: "后续可加入禁忌、炮制、常见配伍和原文出处。"
-    }
-  },
-  {
-    id: "huang-qi",
-    type: "herb",
-    title: "黄芪",
-    level: "专题",
-    summary: "补气升阳、固表相关药物，可用于专题化学习气虚、表虚、自汗等概念。",
-    keywords: ["黄芪", "补气", "固表", "升阳"],
-    sections: {
-      性味归经示例: "甘，微温。归脾、肺经。",
-      功效示例: "补气升阳，固表止汗，利水消肿，托毒生肌。",
-      学习提示: "可与人参、白术、防风等药物做配伍对比。"
-    }
-  }
-];
-
-const typeNames = {
-  all: "全部资料",
-  theory: "中医理论",
-  formula: "方剂库",
-  herb: "中药库"
-};
-
-const state = {
-  type: "all",
-  query: "",
-  level: "all",
-  activeId: null
-};
-
-const itemList = document.querySelector("#itemList");
-const detailPanel = document.querySelector("#detailPanel");
-const resultCount = document.querySelector("#resultCount");
-const panelTitle = document.querySelector("#panelTitle");
-const searchInput = document.querySelector("#searchInput");
-const levelSelect = document.querySelector("#levelSelect");
-const entryCards = document.querySelectorAll(".entry-card");
-
-function getFilteredEntries() {
-  const query = state.query.trim().toLowerCase();
-  return entries.filter((entry) => {
-    const typeMatch = state.type === "all" || entry.type === state.type;
-    const levelMatch = state.level === "all" || entry.level === state.level;
-    const queryText = [entry.title, entry.summary, entry.level, ...entry.keywords].join(" ").toLowerCase();
-    const queryMatch = !query || queryText.includes(query);
-    return typeMatch && levelMatch && queryMatch;
-  });
-}
-
-function renderStats() {
-  document.querySelector("#theoryCount").textContent = entries.filter((item) => item.type === "theory").length;
-  document.querySelector("#formulaCount").textContent = entries.filter((item) => item.type === "formula").length;
-  document.querySelector("#herbCount").textContent = entries.filter((item) => item.type === "herb").length;
-}
-
-function renderList() {
-  const filtered = getFilteredEntries();
-  panelTitle.textContent = typeNames[state.type];
-  resultCount.textContent = `${filtered.length} 条`;
-
-  itemList.innerHTML = "";
-  if (!filtered.length) {
-    itemList.innerHTML = '<p class="empty">没有找到匹配内容。后续导入资料后，这里会自动扩展。</p>';
-    return;
-  }
-
-  filtered.forEach((entry) => {
-    const button = document.createElement("button");
-    button.className = `item-card${state.activeId === entry.id ? " active" : ""}`;
-    button.type = "button";
-    button.innerHTML = `
-      <div class="meta-row">
-        <span class="tag">${typeNames[entry.type]}</span>
-        <span class="tag">${entry.level}</span>
-      </div>
-      <h3>${entry.title}</h3>
-      <p>${entry.summary}</p>
-    `;
-    button.addEventListener("click", () => selectEntry(entry.id));
-    itemList.appendChild(button);
-  });
-}
-
-function selectEntry(id) {
-  state.activeId = id;
-  const entry = entries.find((item) => item.id === id);
-  if (!entry) return;
-
-  const sections = Object.entries(entry.sections)
-    .map(([label, value]) => `<div class="detail-section"><strong>${label}</strong><p>${value}</p></div>`)
-    .join("");
-
-  detailPanel.innerHTML = `
-    <p class="eyebrow">${typeNames[entry.type]} / ${entry.level}</p>
-    <h2>${entry.title}</h2>
-    <p>${entry.summary}</p>
-    <div class="meta-row">${entry.keywords.map((keyword) => `<span class="tag">${keyword}</span>`).join("")}</div>
-    ${sections}
-  `;
-  renderList();
-}
-
-function setType(type) {
-  state.type = type;
-  entryCards.forEach((card) => card.classList.toggle("active", card.dataset.filter === type));
-  renderList();
-}
-
-entryCards.forEach((card) => {
-  card.addEventListener("click", () => setType(card.dataset.filter));
-});
-
-searchInput.addEventListener("input", (event) => {
-  state.query = event.target.value;
-  renderList();
-});
-
-levelSelect.addEventListener("change", (event) => {
-  state.level = event.target.value;
-  renderList();
-});
-
-renderStats();
-renderList();
-selectEntry(entries[0].id);
+  en: {
+    pageTitle: "Qihuang Study Desk - Chinese Medicine Learning Platform",
+    brand: "Qihuang Study Desk",
+    navLibrary: "Library",
+    navTheory: "Theory",
+    navFormula: "Formulas",
+    navHerb: "Herbs",
+    toggleLabel: "中文",
+    heroEyebrow: "Chinese Medicine Learning Platform",
+    heroTitle: "A living knowledge base for theory, formulas, herbs, and clinical notes.",
+    heroText: "The platform is ready for structured learning. Send your formulas, theories, cases, and lecture notes, and I can help organize them into searchable study pages.",
+    enterLibrary: "Enter Library",
+    viewPath: "View Learning Path",
+    statTheory: "Theory Topics",
+    statFormula: "Formula Entries",
+    statHerb: "Herb Entries",
+    libraryTitle: "Chinese Medicine Library",
+    iconAll: "All",
+    iconTheory: "Th",
+    iconFormula: "Fx",
+    iconHerb: "Hb",
+    entryAllTitle: "Overview",
+    entryAllText: "Search theories, formulas, and herbs together",
+    entryTheoryTitle: "Theory",
+    entryTheoryText: "Yin-yang, five phases, zang-fu, channels",
+    entryFormulaTitle: "Formula Library",
+    entryFormulaText: "Ingredients, actions, indications, study notes",
+    entryHerbTitle: "Herb Library",
+    entryHerbText: "Properties, channels, actions, pairings",
+    searchLabel: "Search",
+    searchPlaceholder: "Search: Gui Zhi Tang, yin-yang, licorice...",
+    levelLabel: "Learning Stage",
+    noteTitle: "Content Note",
+    noteText: "These are sample entries. Before launch-grade publishing, I can organize your source text by attribution, category, keywords, and learning order.",
+    detailEyebrow: "Current Entry",
+    detailTitle: "Choose an item to begin",
+    detailText: "Select any theory, formula, or herb entry to view its study card here.",
+    pathTitle: "Suggested Learning Path",
+    pathOneTitle: "Build the Framework",
