@@ -149,6 +149,442 @@
       <span data-i18n="disclaimer">仅作学习整理，不替代专业诊疗建议。</span>
     </footer>
 
-    <script src="./app.js"></script>
+    <script>
+const translations = {
+  zh: {
+    pageTitle: "岐黄研习台 - 中医知识学习平台",
+    brand: "岐黄研习台",
+    navLibrary: "中医库",
+    navTheory: "中医理论",
+    navFormula: "方剂",
+    navHerb: "中药",
+    toggleLabel: "English",
+    heroEyebrow: "中医知识学习平台",
+    heroTitle: "把理论、方剂、药材和临证笔记整理成一套能反复学习的知识库。",
+    heroText: "先搭好平台骨架，后续你把方子、理论、医案、讲义发来，我可以继续帮你导入、分类、检索和生成专题页面。",
+    enterLibrary: "进入中医库",
+    viewPath: "查看学习路径",
+    statTheory: "理论主题",
+    statFormula: "方剂条目",
+    statHerb: "中药条目",
+    libraryTitle: "中医库入口",
+    iconAll: "总",
+    iconTheory: "理",
+    iconFormula: "方",
+    iconHerb: "药",
+    entryAllTitle: "总览学习",
+    entryAllText: "理论、方剂、中药一起检索",
+    entryTheoryTitle: "中医理论",
+    entryTheoryText: "阴阳、五行、脏腑、经络",
+    entryFormulaTitle: "方剂库",
+    entryFormulaText: "组成、功用、主治、学习提示",
+    entryHerbTitle: "中药库",
+    entryHerbText: "性味、归经、功效、配伍",
+    searchLabel: "检索内容",
+    searchPlaceholder: "搜索：桂枝汤、阴阳、甘草...",
+    levelLabel: "学习阶段",
+    noteTitle: "内容提示",
+    noteText: "这里先放示例资料。正式上线前，我会按你提供的原文整理出处、分类、关键词和学习顺序。",
+    detailEyebrow: "当前条目",
+    detailTitle: "选择左侧内容开始学习",
+    detailText: "点击任何理论、方剂或药材条目，这里会显示详细学习卡片。",
+    pathTitle: "建议学习路径",
+    pathOneTitle: "先立框架",
+    pathOneText: "从阴阳、五行、藏象、经络这些基础概念开始，建立中医语言体系。",
+    pathTwoTitle: "再看方药",
+    pathTwoText: "把方剂拆成君臣佐使、功用主治、常见加减，和药材性味归经对应起来。",
+    pathThreeTitle: "进入专题",
+    pathThreeText: "后续可以按体质、病证、经典条文、医案等方式生成专题学习页。",
+    disclaimer: "仅作学习整理，不替代专业诊疗建议。",
+    resultUnit: "条",
+    empty: "没有找到匹配内容。后续导入资料后，这里会自动扩展。",
+    levels: {
+      all: "全部阶段",
+      beginner: "入门",
+      advanced: "进阶",
+      topic: "专题"
+    },
+    typeNames: {
+      all: "全部资料",
+      theory: "中医理论",
+      formula: "方剂库",
+      herb: "中药库"
+    }
+  },
+  en: {
+    pageTitle: "Qihuang Study Desk - Chinese Medicine Learning Platform",
+    brand: "Qihuang Study Desk",
+    navLibrary: "Library",
+    navTheory: "Theory",
+    navFormula: "Formulas",
+    navHerb: "Herbs",
+    toggleLabel: "中文",
+    heroEyebrow: "Chinese Medicine Learning Platform",
+    heroTitle: "A living knowledge base for theory, formulas, herbs, and clinical notes.",
+    heroText: "The platform is ready for structured learning. Send your formulas, theories, cases, and lecture notes, and I can help organize them into searchable study pages.",
+    enterLibrary: "Enter Library",
+    viewPath: "View Learning Path",
+    statTheory: "Theory Topics",
+    statFormula: "Formula Entries",
+    statHerb: "Herb Entries",
+    libraryTitle: "Chinese Medicine Library",
+    iconAll: "All",
+    iconTheory: "Th",
+    iconFormula: "Fx",
+    iconHerb: "Hb",
+    entryAllTitle: "Overview",
+    entryAllText: "Search theories, formulas, and herbs together",
+    entryTheoryTitle: "Theory",
+    entryTheoryText: "Yin-yang, five phases, zang-fu, channels",
+    entryFormulaTitle: "Formula Library",
+    entryFormulaText: "Ingredients, actions, indications, study notes",
+    entryHerbTitle: "Herb Library",
+    entryHerbText: "Properties, channels, actions, pairings",
+    searchLabel: "Search",
+    searchPlaceholder: "Search: Gui Zhi Tang, yin-yang, licorice...",
+    levelLabel: "Learning Stage",
+    noteTitle: "Content Note",
+    noteText: "These are sample entries. Before launch-grade publishing, I can organize your source text by attribution, category, keywords, and learning order.",
+    detailEyebrow: "Current Entry",
+    detailTitle: "Choose an item to begin",
+    detailText: "Select any theory, formula, or herb entry to view its study card here.",
+    pathTitle: "Suggested Learning Path",
+    pathOneTitle: "Build the Framework",
+    pathOneText: "Start with yin-yang, five phases, zang imagery, and channels to build the language of Chinese medicine.",
+    pathTwoTitle: "Study Formulas and Herbs",
+    pathTwoText: "Break formulas into roles, actions, indications, and modifications, then connect them with herb properties and channels.",
+    pathThreeTitle: "Enter Topics",
+    pathThreeText: "Later, the platform can generate topic pages by constitution, pattern, classical passage, or clinical case.",
+    disclaimer: "For study and knowledge organization only. Not a substitute for professional medical care.",
+    resultUnit: "items",
+    empty: "No matching content found. This area will expand as more materials are imported.",
+    levels: {
+      all: "All stages",
+      beginner: "Beginner",
+      advanced: "Advanced",
+      topic: "Topic"
+    },
+    typeNames: {
+      all: "All Materials",
+      theory: "Theory",
+      formula: "Formula Library",
+      herb: "Herb Library"
+    }
+  }
+};
+
+const entries = [
+  {
+    id: "yin-yang",
+    type: "theory",
+    level: "beginner",
+    zh: {
+      title: "阴阳学说",
+      summary: "理解中医辨证中寒热、表里、动静、升降等关系的基础框架。",
+      keywords: ["阴阳", "寒热", "动静", "基础"],
+      sections: {
+        核心概念: "阴阳用于描述事物相互对立、互根、消长和转化的关系。",
+        学习重点: "先抓住相对性：同一个现象在不同参照下可能呈现不同阴阳属性。",
+        后续可接入: "可加入《黄帝内经》原文、老师讲义、案例辨析。"
+      }
+    },
+    en: {
+      title: "Yin-Yang Theory",
+      summary: "A foundational framework for understanding cold and heat, exterior and interior, movement and stillness, ascent and descent.",
+      keywords: ["yin-yang", "cold-heat", "movement", "foundation"],
+      sections: {
+        "Core Idea": "Yin-yang describes relationships of opposition, interdependence, waxing and waning, and transformation.",
+        "Study Focus": "Start with relativity: the same phenomenon may show different yin-yang qualities depending on the reference point.",
+        "Future Materials": "Classical passages, lecture notes, and case comparisons can be added here."
+      }
+    }
+  },
+  {
+    id: "five-phases",
+    type: "theory",
+    level: "beginner",
+    zh: {
+      title: "五行与脏腑关系",
+      summary: "用木、火、土、金、水理解生克制化，以及肝心脾肺肾之间的关系。",
+      keywords: ["五行", "脏腑", "生克", "制化"],
+      sections: {
+        核心概念: "五行不是简单分类表，而是观察功能关系和动态变化的模型。",
+        学习重点: "重点看生克制化如何帮助分析病机，不要只背对应表。",
+        后续可接入: "可扩展五行配属表、脏腑病机图、临床例题。"
+      }
+    },
+    en: {
+      title: "Five Phases and Zang-Fu Relationships",
+      summary: "Use wood, fire, earth, metal, and water to understand generation, control, regulation, and organ relationships.",
+      keywords: ["five phases", "zang-fu", "generation", "control"],
+      sections: {
+        "Core Idea": "The five phases are not just a classification chart; they model functional relationships and dynamic change.",
+        "Study Focus": "Focus on how generation and control help analyze pathomechanisms, instead of only memorizing correspondences.",
+        "Future Materials": "Correspondence charts, pathomechanism diagrams, and clinical exercises can be added."
+      }
+    }
+  },
+  {
+    id: "guizhi-tang",
+    type: "formula",
+    level: "advanced",
+    zh: {
+      title: "桂枝汤",
+      summary: "经典解肌发表、调和营卫方，适合用来学习方剂结构。",
+      keywords: ["桂枝汤", "伤寒论", "营卫", "解表"],
+      sections: {
+        组成示例: "桂枝、芍药、炙甘草、生姜、大枣。",
+        功用示例: "解肌发表，调和营卫。",
+        学习提示: "后续可把你的方解、剂量、加减、条文出处导入这里。"
+      }
+    },
+    en: {
+      title: "Gui Zhi Tang",
+      summary: "A classic formula for releasing the exterior and harmonizing nutritive and defensive qi.",
+      keywords: ["Gui Zhi Tang", "Shang Han Lun", "ying-wei", "release exterior"],
+      sections: {
+        "Sample Composition": "Gui Zhi, Shao Yao, prepared Gan Cao, Sheng Jiang, Da Zao.",
+        "Sample Actions": "Releases the exterior and harmonizes nutritive and defensive qi.",
+        "Study Note": "Your formula explanation, dosage, modifications, and source passages can be imported here later."
+      }
+    }
+  },
+  {
+    id: "si-jun-zi-tang",
+    type: "formula",
+    level: "advanced",
+    zh: {
+      title: "四君子汤",
+      summary: "补气基础方，适合做脾胃气虚类方剂的学习入口。",
+      keywords: ["四君子汤", "补气", "脾胃", "方剂"],
+      sections: {
+        组成示例: "人参、白术、茯苓、炙甘草。",
+        功用示例: "益气健脾。",
+        学习提示: "可以继续关联六君子汤、香砂六君子汤等衍生方。"
+      }
+    },
+    en: {
+      title: "Si Jun Zi Tang",
+      summary: "A foundational qi-tonifying formula and a useful entry point for spleen-stomach qi deficiency formulas.",
+      keywords: ["Si Jun Zi Tang", "tonify qi", "spleen-stomach", "formula"],
+      sections: {
+        "Sample Composition": "Ren Shen, Bai Zhu, Fu Ling, prepared Gan Cao.",
+        "Sample Actions": "Tonifies qi and strengthens the spleen.",
+        "Study Note": "Related formulas such as Liu Jun Zi Tang and Xiang Sha Liu Jun Zi Tang can be linked here."
+      }
+    }
+  },
+  {
+    id: "gan-cao",
+    type: "herb",
+    level: "beginner",
+    zh: {
+      title: "甘草",
+      summary: "常见调和药，学习性味、归经、配伍时非常适合作为起点。",
+      keywords: ["甘草", "补气", "调和", "中药"],
+      sections: {
+        性味归经示例: "甘，平。归心、肺、脾、胃经。",
+        功效示例: "补脾益气，清热解毒，祛痰止咳，缓急止痛，调和诸药。",
+        学习提示: "后续可加入禁忌、炮制、常见配伍和原文出处。"
+      }
+    },
+    en: {
+      title: "Gan Cao",
+      summary: "A common harmonizing herb and a strong starting point for learning properties, channels, and pairings.",
+      keywords: ["Gan Cao", "licorice", "tonify qi", "harmonize"],
+      sections: {
+        "Sample Properties": "Sweet, neutral. Enters the heart, lung, spleen, and stomach channels.",
+        "Sample Actions": "Tonifies spleen qi, clears heat and toxins, transforms phlegm, stops cough, moderates spasms, and harmonizes formulas.",
+        "Study Note": "Contraindications, processing, common pairings, and source passages can be added later."
+      }
+    }
+  },
+  {
+    id: "huang-qi",
+    type: "herb",
+    level: "topic",
+    zh: {
+      title: "黄芪",
+      summary: "补气升阳、固表相关药物，可用于专题化学习气虚、表虚、自汗等概念。",
+      keywords: ["黄芪", "补气", "固表", "升阳"],
+      sections: {
+        性味归经示例: "甘，微温。归脾、肺经。",
+        功效示例: "补气升阳，固表止汗，利水消肿，托毒生肌。",
+        学习提示: "可与人参、白术、防风等药物做配伍对比。"
+      }
+    },
+    en: {
+      title: "Huang Qi",
+      summary: "A qi-tonifying and exterior-securing herb, useful for topic-based study of qi deficiency, exterior deficiency, and spontaneous sweating.",
+      keywords: ["Huang Qi", "astragalus", "tonify qi", "secure exterior"],
+      sections: {
+        "Sample Properties": "Sweet, slightly warm. Enters the spleen and lung channels.",
+        "Sample Actions": "Tonifies qi, raises yang, secures the exterior, stops sweating, promotes urination, reduces swelling, and supports tissue regeneration.",
+        "Study Note": "Can be compared with Ren Shen, Bai Zhu, Fang Feng, and other related herbs."
+      }
+    }
+  }
+];
+
+const state = {
+  lang: localStorage.getItem("tcm-language") || "zh",
+  type: "all",
+  query: "",
+  level: "all",
+  activeId: null
+};
+
+const itemList = document.querySelector("#itemList");
+const detailPanel = document.querySelector("#detailPanel");
+const resultCount = document.querySelector("#resultCount");
+const panelTitle = document.querySelector("#panelTitle");
+const searchInput = document.querySelector("#searchInput");
+const levelSelect = document.querySelector("#levelSelect");
+const languageToggle = document.querySelector("#languageToggle");
+const entryCards = document.querySelectorAll(".entry-card");
+
+function t(key) {
+  return translations[state.lang][key];
+}
+
+function getEntryText(entry) {
+  return entry[state.lang];
+}
+
+function getFilteredEntries() {
+  const query = state.query.trim().toLowerCase();
+  return entries.filter((entry) => {
+    const text = getEntryText(entry);
+    const typeMatch = state.type === "all" || entry.type === state.type;
+    const levelMatch = state.level === "all" || entry.level === state.level;
+    const queryText = [text.title, text.summary, translations[state.lang].levels[entry.level], ...text.keywords]
+      .join(" ")
+      .toLowerCase();
+    const queryMatch = !query || queryText.includes(query);
+    return typeMatch && levelMatch && queryMatch;
+  });
+}
+
+function renderLanguage() {
+  document.documentElement.lang = state.lang === "zh" ? "zh-CN" : "en";
+  document.title = t("pageTitle");
+  languageToggle.textContent = t("toggleLabel");
+  searchInput.placeholder = t("searchPlaceholder");
+
+  document.querySelectorAll("[data-i18n]").forEach((element) => {
+    element.textContent = t(element.dataset.i18n);
+  });
+
+  levelSelect.innerHTML = Object.entries(translations[state.lang].levels)
+    .map(([value, label]) => `<option value="${value}">${label}</option>`)
+    .join("");
+  levelSelect.value = state.level;
+}
+
+function renderStats() {
+  document.querySelector("#theoryCount").textContent = entries.filter((item) => item.type === "theory").length;
+  document.querySelector("#formulaCount").textContent = entries.filter((item) => item.type === "formula").length;
+  document.querySelector("#herbCount").textContent = entries.filter((item) => item.type === "herb").length;
+}
+
+function renderList() {
+  const filtered = getFilteredEntries();
+  panelTitle.textContent = translations[state.lang].typeNames[state.type];
+  resultCount.textContent = `${filtered.length} ${t("resultUnit")}`;
+
+  itemList.innerHTML = "";
+  if (!filtered.length) {
+    itemList.innerHTML = `<p class="empty">${t("empty")}</p>`;
+    return;
+  }
+
+  filtered.forEach((entry) => {
+    const text = getEntryText(entry);
+    const button = document.createElement("button");
+    button.className = `item-card${state.activeId === entry.id ? " active" : ""}`;
+    button.type = "button";
+    button.innerHTML = `
+      <div class="meta-row">
+        <span class="tag">${translations[state.lang].typeNames[entry.type]}</span>
+        <span class="tag">${translations[state.lang].levels[entry.level]}</span>
+      </div>
+      <h3>${text.title}</h3>
+      <p>${text.summary}</p>
+    `;
+    button.addEventListener("click", () => selectEntry(entry.id));
+    itemList.appendChild(button);
+  });
+}
+
+function renderDetailPlaceholder() {
+  detailPanel.innerHTML = `
+    <p class="eyebrow">${t("detailEyebrow")}</p>
+    <h2>${t("detailTitle")}</h2>
+    <p>${t("detailText")}</p>
+  `;
+}
+
+function selectEntry(id) {
+  state.activeId = id;
+  const entry = entries.find((item) => item.id === id);
+  if (!entry) return;
+
+  const text = getEntryText(entry);
+  const sections = Object.entries(text.sections)
+    .map(([label, value]) => `<div class="detail-section"><strong>${label}</strong><p>${value}</p></div>`)
+    .join("");
+
+  detailPanel.innerHTML = `
+    <p class="eyebrow">${translations[state.lang].typeNames[entry.type]} / ${translations[state.lang].levels[entry.level]}</p>
+    <h2>${text.title}</h2>
+    <p>${text.summary}</p>
+    <div class="meta-row">${text.keywords.map((keyword) => `<span class="tag">${keyword}</span>`).join("")}</div>
+    ${sections}
+  `;
+  renderList();
+}
+
+function setType(type) {
+  state.type = type;
+  entryCards.forEach((card) => card.classList.toggle("active", card.dataset.filter === type));
+  renderList();
+}
+
+function renderAll() {
+  renderLanguage();
+  renderStats();
+  renderList();
+  if (state.activeId) {
+    selectEntry(state.activeId);
+  } else {
+    renderDetailPlaceholder();
+  }
+}
+
+entryCards.forEach((card) => {
+  card.addEventListener("click", () => setType(card.dataset.filter));
+});
+
+searchInput.addEventListener("input", (event) => {
+  state.query = event.target.value;
+  renderList();
+});
+
+levelSelect.addEventListener("change", (event) => {
+  state.level = event.target.value;
+  renderList();
+});
+
+languageToggle.addEventListener("click", () => {
+  state.lang = state.lang === "zh" ? "en" : "zh";
+  localStorage.setItem("tcm-language", state.lang);
+  renderAll();
+});
+
+renderAll();
+selectEntry(entries[0].id);
+
+</script>
   </body>
 </html>
+
