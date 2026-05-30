@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>岐黄研习台 - 中医知识学习平台</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="回到首页">
+        <span class="brand-mark">岐</span>
+        <span>岐黄研习台</span>
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a href="#library">中医库</a>
+        <a href="#theory">中医理论</a>
+        <a href="#formula">方剂</a>
+        <a href="#herb">中药</a>
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">中医知识学习平台</p>
+          <h1>把理论、方剂、药材和临证笔记整理成一套能反复学习的知识库。</h1>
+          <p class="hero-text">
+            先搭好平台骨架，后续你把方子、理论、医案、讲义发来，我可以继续帮你导入、分类、检索和生成专题页面。
+          </p>
+          <div class="hero-actions">
+            <a class="primary-action" href="#library">进入中医库</a>
+            <a class="secondary-action" href="#study">查看学习路径</a>
+          </div>
+        </div>
+        <figure class="hero-visual" aria-label="中医学习平台视觉图">
+          <img src="./assets/tcm-hero.png" alt="中医典籍、药材与山水意象" />
+        </figure>
+      </section>
+
+      <section class="stats" aria-label="平台概览">
+        <article>
+          <strong id="theoryCount">0</strong>
+          <span>理论主题</span>
+        </article>
+        <article>
+          <strong id="formulaCount">0</strong>
+          <span>方剂条目</span>
+        </article>
+        <article>
+          <strong id="herbCount">0</strong>
+          <span>中药条目</span>
+        </article>
+      </section>
+
+      <section id="library" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Knowledge Library</p>
+          <h2>中医库入口</h2>
+        </div>
+        <div class="entry-grid">
+          <button class="entry-card active" data-filter="all">
+            <span class="entry-icon">总</span>
+            <strong>总览学习</strong>
+            <small>理论、方剂、中药一起检索</small>
+          </button>
+          <button class="entry-card" id="theory" data-filter="theory">
+            <span class="entry-icon">理</span>
+            <strong>中医理论</strong>
+            <small>阴阳、五行、脏腑、经络</small>
+          </button>
+          <button class="entry-card" id="formula" data-filter="formula">
+            <span class="entry-icon">方</span>
+            <strong>方剂库</strong>
+            <small>组成、功用、主治、学习提示</small>
+          </button>
+          <button class="entry-card" id="herb" data-filter="herb">
+            <span class="entry-icon">药</span>
+            <strong>中药库</strong>
+            <small>性味、归经、功效、配伍</small>
+          </button>
+        </div>
+      </section>
+
+      <section class="workspace" aria-label="知识检索区">
+        <aside class="filter-panel">
+          <label for="searchInput">检索内容</label>
+          <input id="searchInput" type="search" placeholder="搜索：桂枝汤、阴阳、甘草..." />
+
+          <label for="levelSelect">学习阶段</label>
+          <select id="levelSelect">
+            <option value="all">全部阶段</option>
+            <option value="入门">入门</option>
+            <option value="进阶">进阶</option>
+            <option value="专题">专题</option>
+          </select>
+
+          <div class="note">
+            <strong>内容提示</strong>
+            <p>这里先放示例资料。正式上线前，我会按你提供的原文整理出处、分类、关键词和学习顺序。</p>
+          </div>
+        </aside>
+
+        <section class="content-panel">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Study Desk</p>
+              <h2 id="panelTitle">全部资料</h2>
+            </div>
+            <span id="resultCount">0 条</span>
+          </div>
+          <div id="itemList" class="item-list"></div>
+        </section>
+
+        <article id="detailPanel" class="detail-panel" aria-live="polite">
+          <p class="eyebrow">当前条目</p>
+          <h2>选择左侧内容开始学习</h2>
+          <p>点击任何理论、方剂或药材条目，这里会显示详细学习卡片。</p>
+        </article>
+      </section>
+
+      <section id="study" class="section study-band">
+        <div class="section-heading">
+          <p class="eyebrow">Learning Path</p>
+          <h2>建议学习路径</h2>
+        </div>
+        <div class="path-grid">
+          <article>
+            <span>01</span>
+            <h3>先立框架</h3>
+            <p>从阴阳、五行、藏象、经络这些基础概念开始，建立中医语言体系。</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>再看方药</h3>
+            <p>把方剂拆成君臣佐使、功用主治、常见加减，和药材性味归经对应起来。</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>进入专题</h3>
+            <p>后续可以按体质、病证、经典条文、医案等方式生成专题学习页。</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>岐黄研习台</span>
+      <span>仅作学习整理，不替代专业诊疗建议。</span>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
