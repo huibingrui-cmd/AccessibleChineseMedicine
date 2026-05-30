@@ -1,2 +1,27 @@
-# AccessibleChineseMedicine
-This is a platform for everyone to learn traditional Chinese medicine. It provides systematic knowledge on herbal formulas, the five elements, and seasonal cycles, making it easy for everyone to start and understand the wisdom of TCM.
+# Accessible Chinese Medicine
+
+一个面向中医理论、方剂、中药与医案资料整理的静态学习网站。
+
+## 当前内容
+
+- 中医知识库首页
+- 中文 / English 双语切换
+- 中医理论、方剂库、中药库入口
+- 搜索与阶段筛选
+- 条目详情学习卡片
+- 示例数据：阴阳学说、五行与脏腑、桂枝汤、四君子汤、甘草、黄芪
+
+## 发布方式
+
+本项目是纯静态网站，可以直接通过 GitHub Pages 发布。
+
+1. 将本目录下的文件上传到 GitHub 仓库根目录。
+2. 进入仓库 `Settings`。
+3. 打开 `Pages`。
+4. Source 选择 `Deploy from a branch`。
+5. Branch 选择 `main`，目录选择 `/root`。
+6. 保存后等待 GitHub 生成访问地址。
+
+## 免责声明
+
+本网站内容仅用于中医学习和资料整理，不替代专业医生诊疗建议。
