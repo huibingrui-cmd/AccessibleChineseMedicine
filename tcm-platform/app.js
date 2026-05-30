@@ -1,4 +1,4 @@
-cconst translations = {
+const translations = {
   zh: {
     pageTitle: "岐黄研习台 - 中医知识学习平台",
     brand: "岐黄研习台",
